@@ -1,7 +1,8 @@
 import { IBaseModel } from "./BaseModel.model";
 
-export interface User extends IBaseModel{
+export interface Person extends IBaseModel{
     name:string,
+    surname:string,
     email:string,
-    password:string
+    groupid?:string
 }

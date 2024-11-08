@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
     const email=formGroup.get('email')?.value
     const password=formGroup.get('password')?.value
 
-    this.auth.register({nombre:username,correo:email,contraseña:password,id:''}).subscribe({
+    this.auth.register({name:username,email:email,password:password,id:''}).subscribe({
       next:(value)=>{
         this.auth.setLocalToken(value)
         this.toastcolor="success"
