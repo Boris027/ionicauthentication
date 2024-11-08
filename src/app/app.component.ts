@@ -22,7 +22,6 @@ export class AppComponent {
   ) {
     auth.getLocalToken().subscribe({
       next:(value)=>{
-
         if(value==""){
           this.isloged=false;
         }else{
@@ -32,8 +31,6 @@ export class AppComponent {
             }
           })
         }
-
-        
       },
     })
   }

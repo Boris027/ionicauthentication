@@ -35,7 +35,9 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./PageComponents/CRUD/login/login.module').then( m => m.LoginPageModule)
-  }
+  },
+  
+
 ];
 
 @NgModule({

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FactoryAuthenticationService } from './Core/repository/factory';
 import { API_URL_TOKEN, LOCALSTORAGE_ITEM_NAME, RESOURCE_NAME_1, RESOURCE_NAME_2 } from './Core/repository/tokens';
 import { provideHttpClient } from '@angular/common/http';
+import { provideLottieOptions } from 'ngx-lottie';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,10 @@ import { provideHttpClient } from '@angular/common/http';
     {provide:RESOURCE_NAME_1,useValue:"personas"},
     {provide:RESOURCE_NAME_2,useValue:"grupos"},
     FactoryAuthenticationService,
-    provideHttpClient()
+    provideHttpClient(),
+    provideLottieOptions({
+      player: () => import('lottie-web'),
+    })
   ],
   bootstrap: [AppComponent],
 })
