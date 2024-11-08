@@ -9,8 +9,10 @@ import { timer } from 'rxjs';
   styleUrls: ['./splash.page.scss'],
 })
 export class SplashPage implements OnInit {
+  showSidebar = false;
 
   constructor(private router:Router) { }
+
 
   ngOnInit() {
     timer(2000).subscribe({
