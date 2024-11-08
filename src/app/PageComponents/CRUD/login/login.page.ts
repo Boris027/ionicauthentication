@@ -72,9 +72,9 @@ export class LoginPage implements OnInit {
           this.toastcolor="success"
           this.toastmessage="Credenciales Correctas"
           this.setOpen(true)
-          timer(2000).subscribe({
+          timer(500).subscribe({
             next:(value)=>{
-                this.router.navigate(["/home"])
+                this.router.navigate(["/splash"])
             },
           })
       },

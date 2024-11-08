@@ -31,6 +31,9 @@ export class SplashPage implements OnInit {
       next:(value)=>{
         this.router.navigate(['/home'])
       },
+      error:(err)=>{
+          console.log(err)
+      },
     })
     
   }

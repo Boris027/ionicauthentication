@@ -49,9 +49,9 @@ export class RegisterPage implements OnInit {
         this.toastcolor="success"
         this.toastmessage="Se ha registrado con éxito"
         this.setOpen(true)
-        timer(2000).subscribe({
+        timer(500).subscribe({
           next:(value)=>{
-              this.router.navigate(["/home"])
+              this.router.navigate(["/splash"])
           },
         })
       },error:(err)=>{
