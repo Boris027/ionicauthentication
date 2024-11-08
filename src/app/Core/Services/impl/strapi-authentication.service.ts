@@ -4,6 +4,7 @@ import { IStrapiUser } from "../../models/Strapi-user.model";
 import { API_URL_TOKEN, LOCALSTORAGE_ITEM_NAME } from "../../repository/tokens";
 import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
+import { User } from "../../models/User.model";
 
 
 interface StrapiLoginRecived {
@@ -29,7 +30,7 @@ interface StrapiUserRecived {
 
 
 
-export class StrapiAuthenticationService extends BaseAuthenticationService<IStrapiUser>{
+export class StrapiAuthenticationService extends BaseAuthenticationService<User>{
 
     constructor(
         httpclient:HttpClient,
@@ -39,11 +40,16 @@ export class StrapiAuthenticationService extends BaseAuthenticationService<IStra
         super(httpclient,APIURL,LOCALSTORAGE_ITEM_NAME)
     }
 
-    override login(email:string,password:string): Observable<string> {
+    override login(user:User): Observable<string> {
         console.log(LOCALSTORAGE_ITEM_NAME)
         console.log(this.APIURL)
-        const body={identifier:email,password:password}
+        const body={identifier:user.correo,password:user.contraseña}
         return this.httpclient.post(this.APIURL+`/auth/local`,body).pipe(map((c:any)=>{return c.jwt}))
+    }
+
+    override register(user:User):Observable<string>{
+        const body={username:user.nombre,password:user.contraseña,email:user.correo}
+        return this.httpclient.post(this.APIURL+`/auth/local/register`,body).pipe(map((c:any)=>{return c.jwt}))
     }
 
     

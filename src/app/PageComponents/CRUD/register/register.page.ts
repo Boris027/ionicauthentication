@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IStrapiUser } from 'src/app/Core/models/Strapi-user.model';
+import { User } from 'src/app/Core/models/User.model';
+import { AUTHENTICATION_SERVICE } from 'src/app/Core/repository/tokens';
+import { IbaseAuthService } from 'src/app/Core/Services/interfaces/base-service-authentication.interface';
 
 @Component({
   selector: 'app-register',
@@ -8,14 +12,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPage implements OnInit {
 
+
   genders:string[] = ['Masculino', 'Femenino', 'Otros'];
   formGroup:FormGroup;
+  isToastOpen: boolean=false;
+  toastmessage:string="";
+  toastcolor:string="";
 
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder,
+    @Inject(AUTHENTICATION_SERVICE) private auth:IbaseAuthService<User>
+  ) { 
     this.formGroup = this.fb.group({
       username:['', [Validators.required, Validators.minLength(2)]],
       email:['', [Validators.required, Validators.email]],
-      password:['', [Validators.required]]
+      password:['', [Validators.required,Validators.minLength(6)]]
     }
   );
     this.formGroup.controls['username'].setValue("");
@@ -26,7 +36,29 @@ export class RegisterPage implements OnInit {
   }
 
   
+  submitForm(formGroup:FormGroup) {
+    const username=formGroup.get('username')?.value
+    const email=formGroup.get('email')?.value
+    const password=formGroup.get('password')?.value
 
+    this.auth.register({nombre:username,correo:email,contraseña:password,id:''}).subscribe({
+      next:(value)=>{
+        this.auth.setLocalToken(value)
+        this.toastcolor="success"
+        this.toastmessage="Se ha registrado con éxito"
+        this.setOpen(true)
+      },error:(err)=>{
+        console.log(err)
+        this.toastcolor="danger"
+        this.toastmessage = err?.error?.error?.message ?? "unknown error";
+        this.setOpen(true)
+      },
+    })
+  }
+
+  setOpen(estado:boolean){
+    this.isToastOpen=estado;
+  }
 
   
   get username(){

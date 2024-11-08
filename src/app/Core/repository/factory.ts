@@ -4,10 +4,11 @@ import { HttpClient } from "@angular/common/http";
 import { IbaseAuthService } from "../Services/interfaces/base-service-authentication.interface";
 import { IStrapiUser } from "../models/Strapi-user.model";
 import { StrapiAuthenticationService } from "../Services/impl/strapi-authentication.service";
+import { User } from "../models/User.model";
 
 
 
-function StrapiAuthenticationServiceFactory(httpclient:HttpClient,apiurl:string,localstorageitemname:string):IbaseAuthService<IStrapiUser>{
+function StrapiAuthenticationServiceFactory(httpclient:HttpClient,apiurl:string,localstorageitemname:string):IbaseAuthService<User>{
     return new StrapiAuthenticationService(httpclient,apiurl,localstorageitemname)
 }
 

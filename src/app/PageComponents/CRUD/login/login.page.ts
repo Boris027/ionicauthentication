@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
 import { IStrapiUser } from 'src/app/Core/models/Strapi-user.model';
+import { User } from 'src/app/Core/models/User.model';
 import { AUTHENTICATION_SERVICE } from 'src/app/Core/repository/tokens';
 import { StrapiAuthenticationService } from 'src/app/Core/Services/impl/strapi-authentication.service';
 import { IbaseAuthService } from 'src/app/Core/Services/interfaces/base-service-authentication.interface';
@@ -24,7 +25,7 @@ export class LoginPage implements OnInit {
 
 
   constructor(private fb:FormBuilder,
-    @Inject(AUTHENTICATION_SERVICE) private auth:IbaseAuthService<IStrapiUser>
+    @Inject(AUTHENTICATION_SERVICE) private auth:IbaseAuthService<User>
   ) { 
     this.formGroup = this.fb.group({
       email:['', [Validators.required, Validators.email]],
@@ -63,7 +64,7 @@ export class LoginPage implements OnInit {
     const email=formGroup.get('email')?.value
     const password=formGroup.get('password')?.value
 
-    this.auth.login(email,password).subscribe({
+    this.auth.login({nombre:"",correo:email,contraseña:password,id:""}).subscribe({
       next:(value)=>{
           this.auth.setLocalToken(value)
           this.toastcolor="success"

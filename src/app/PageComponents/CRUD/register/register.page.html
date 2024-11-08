@@ -14,9 +14,9 @@
   </ion-title>
 </ion-header>
 <ion-content class="ion-padding">
-  <form [formGroup]="formGroup" >
+  <form [formGroup]="formGroup" (ngSubmit)="submitForm(formGroup)">
     <ion-item>
-      <ion-input label="Nombre" label-placement="stacked"  type="text" formControlName="name"></ion-input>
+      <ion-input label="username" label-placement="stacked"  type="text" formControlName="username"></ion-input>
     </ion-item>
     <ion-text color="danger" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
       <p *ngIf="username?.errors?.['required']">El nombre es obligatorio.</p>
@@ -38,6 +38,7 @@
     </ion-item>
     <ion-text color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
       <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
+      <p *ngIf="password?.errors?.['minlength']">La contraseña debe ser de almenos 6 carácteres.</p>
       <p *ngIf="password?.errors?.['password']">Por favor, introduce una constraseña válida.</p>
     </ion-text>
     
@@ -49,5 +50,13 @@
 
   <ion-text>¿Ya tienes cuenta?</ion-text><br>
   <ion-button [routerLink]="['/login']">Login</ion-button>
+
+  <ion-toast
+    [color]="toastcolor"
+    [isOpen]="isToastOpen"
+    [message]="toastmessage"
+    [duration]="3000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
 
 </ion-content>

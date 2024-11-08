@@ -15,6 +15,7 @@ export class BaseAuthenticationService<T extends IBaseModel> implements IbaseAut
     @Inject(API_URL_TOKEN) protected APIURL:string,
     @Inject(LOCALSTORAGE_ITEM_NAME) protected LOCALSTORAGE_ITEM_NAME:string,
   ) { }
+  
 
     setLocalToken(token: string): string {
         localStorage.setItem(this.LOCALSTORAGE_ITEM_NAME,token)
@@ -29,12 +30,13 @@ export class BaseAuthenticationService<T extends IBaseModel> implements IbaseAut
         return token;
       }
 
-    register(data: T): Observable<T> {
-        throw new Error('Method not implemented.');
+    register(data: T): Observable<string> {
+      throw new Error('Method not implemented.');
     }
-    login(email:string,password:string): Observable<string> {
-        throw new Error('Method not implemented.');
+    login(data: T): Observable<string> {
+      throw new Error('Method not implemented.');
     }
+    
     verificateToken(token: string): Observable<boolean> {
         throw new Error('Method not implemented.');
     }
