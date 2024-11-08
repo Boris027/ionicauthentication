@@ -14,7 +14,7 @@
   </ion-title>
 </ion-header>
 <ion-content class="ion-padding">
-  <form [formGroup]="formGroup" >
+  <form [formGroup]="formGroup" (ngSubmit)="submitForm(formGroup)">
     
 
     <!-- Email -->
@@ -41,5 +41,14 @@
 
   <ion-text>¿No tienes cuenta?</ion-text><br>
   <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+
+
+  <ion-toast
+    [color]="toastcolor"
+    [isOpen]="isToastOpen"
+    [message]="toastmessage"
+    [duration]="3000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
 
 </ion-content>
