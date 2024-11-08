@@ -21,10 +21,13 @@ export class AuthGuard implements CanActivate {
 
 
 
-    if(this.auth.getLocalToken()==""){
-      console.log("ae")
-      this.router.navigate(["/login"])
-    }
+    this.auth.getLocalToken().subscribe({
+      next:(value)=>{
+          if(value==""){
+            this.router.navigate(["/login"])
+          }
+      },
+    })
     
     
 

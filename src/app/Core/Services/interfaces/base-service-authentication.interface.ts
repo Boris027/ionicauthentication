@@ -2,7 +2,7 @@ import { Observable } from "rxjs"
 
 export interface IbaseAuthService<T> {
 
-    getLocalToken():string
+    getLocalToken():Observable<string>
     setLocalToken(token:string):string
     register(data:T):Observable<string>
     login(data:T):Observable<string>
