@@ -1,15 +1,40 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './Core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'splash',
     pathMatch: 'full'
   },
+  
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'home',
+    canActivate:[AuthGuard],
+    loadChildren: () => import('./PageComponents/General/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'people',
+    canActivate:[AuthGuard],
+    loadChildren: () => import('./PageComponents/General/people/people.module').then( m => m.PeoplePageModule)
+  },
+  {
+    canActivate:[AuthGuard],
+    path: 'groups',
+    loadChildren: () => import('./PageComponents/General/groups/groups.module').then( m => m.GroupsPageModule)
+  },
+  {
+    path: 'splash',
+    loadChildren: () => import('./PageComponents/splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./PageComponents/CRUD/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./PageComponents/CRUD/login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

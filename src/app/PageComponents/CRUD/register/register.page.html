@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header-content">
+      <ion-icon slot="start"  name="person-outline"></ion-icon>
+      <ion-title>
+        Registrarse
+      </ion-title>
+    </div>
+    
+    
+  </ion-toolbar>
+  <ion-title>
+    
+  </ion-title>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" >
+    <ion-item>
+      <ion-input label="Nombre" label-placement="stacked"  type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+      <p *ngIf="username?.errors?.['required']">El nombre es obligatorio.</p>
+      <p *ngIf="username?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</p>
+    </ion-text>
+
+
+    <!-- Email -->
+    <ion-item>
+      <ion-input label="Email" label-placement="stacked"  type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+      <p *ngIf="email?.errors?.['required']">El email es obligatorio.</p>
+      <p *ngIf="email?.errors?.['email']">Por favor, introduce un email válido.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-input label="password" label-placement="stacked"  type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+      <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
+      <p *ngIf="password?.errors?.['password']">Por favor, introduce una constraseña válida.</p>
+    </ion-text>
+    
+    
+
+    <!-- Botón de Envío -->
+    <ion-button [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit" >Registrar</ion-button>
+  </form>
+
+  <ion-text>¿Ya tienes cuenta?</ion-text><br>
+  <ion-button [routerLink]="['/login']">Login</ion-button>
+
+</ion-content>

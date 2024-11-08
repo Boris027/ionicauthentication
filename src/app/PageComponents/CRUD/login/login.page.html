@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header-content">
+      <ion-icon slot="start"  name="person-outline"></ion-icon>
+      <ion-title>
+        Iniciar Sesión
+      </ion-title>
+    </div>
+    
+    
+  </ion-toolbar>
+  <ion-title>
+    
+  </ion-title>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" >
+    
+
+    <!-- Email -->
+    <ion-item>
+      <ion-input label="Email" label-placement="stacked"  type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+      <p *ngIf="email?.errors?.['required']">El email es obligatorio.</p>
+      <p *ngIf="email?.errors?.['email']">Por favor, introduce un email válido.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-input label="password" label-placement="stacked"  type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+      <p *ngIf="email?.errors?.['required']">La contraseña no es valida</p>
+      <p *ngIf="email?.errors?.['email']">Por favor introduce una contrasña valida</p>
+    </ion-text>
+    
+
+    <!-- Botón de Envío -->
+    <ion-button [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit" >Iniciar Sesión</ion-button>
+  </form>
+
+  <ion-text>¿No tienes cuenta?</ion-text><br>
+  <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+
+</ion-content>
