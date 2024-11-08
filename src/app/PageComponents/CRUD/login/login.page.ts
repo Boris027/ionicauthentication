@@ -1,5 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
+import { Router } from '@angular/router';
+import { delay, timer } from 'rxjs';
 import { IStrapiUser } from 'src/app/Core/models/Strapi-user.model';
 import { User } from 'src/app/Core/models/User.model';
 import { AUTHENTICATION_SERVICE } from 'src/app/Core/repository/tokens';
@@ -24,7 +26,7 @@ export class LoginPage implements OnInit {
   toastcolor:string=""
 
 
-  constructor(private fb:FormBuilder,
+  constructor(private fb:FormBuilder,private router:Router,
     @Inject(AUTHENTICATION_SERVICE) private auth:IbaseAuthService<User>
   ) { 
     this.formGroup = this.fb.group({
@@ -64,12 +66,17 @@ export class LoginPage implements OnInit {
     const email=formGroup.get('email')?.value
     const password=formGroup.get('password')?.value
 
-    this.auth.login({nombre:"",correo:email,contraseña:password,id:""}).subscribe({
+    this.auth.login({name:"",email:email,password:password,id:""}).subscribe({
       next:(value)=>{
           this.auth.setLocalToken(value)
           this.toastcolor="success"
           this.toastmessage="Credenciales Correctas"
           this.setOpen(true)
+          timer(2000).subscribe({
+            next:(value)=>{
+                this.router.navigate(["/home"])
+            },
+          })
       },
       error:(err)=>{
           this.toastcolor="danger"

@@ -51,6 +51,7 @@ export class StrapiAuthenticationService extends BaseAuthenticationService<User>
         const body={username:user.name,password:user.password,email:user.email}
         return this.httpclient.post(this.APIURL+`/auth/local/register`,body).pipe(map((c:any)=>{return c.jwt}))
     }
+    
 
     
 

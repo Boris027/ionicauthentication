@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AUTHENTICATION_SERVICE } from '../repository/tokens';
+import { IbaseAuthService } from '../Services/interfaces/base-service-authentication.interface';
+import { User } from '../models/User.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router:Router){}
+  constructor(private router:Router,
+    @Inject(AUTHENTICATION_SERVICE) private auth:IbaseAuthService<User>
+  ){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -15,7 +20,11 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-    console.log("AAAAAAAAAAAAAA")
+
+    if(this.auth.getLocalToken()==""){
+      console.log("ae")
+      this.router.navigate(["/login"])
+    }
     
     
 
