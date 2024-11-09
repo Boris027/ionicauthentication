@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <div class="header-content">
-      <ion-icon slot="start"  name="person-outline"></ion-icon>
+      <!--<ion-icon slot="start"  name="person-outline"></ion-icon>-->
       <ion-title>
         Registrarse
       </ion-title>
@@ -13,7 +13,7 @@
     
   </ion-title>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content class="class-center">
   <form [formGroup]="formGroup" (ngSubmit)="submitForm(formGroup)">
     <ion-item>
       <ion-input label="username" label-placement="stacked"  type="text" formControlName="username"></ion-input>
@@ -46,17 +46,18 @@
 
     <!-- Botón de Envío -->
     <ion-button [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit" >Registrar</ion-button>
+    <ion-text>¿Ya tienes cuenta?</ion-text><br>
+    <ion-button [routerLink]="['/login']">Login</ion-button>
+
+    <ion-toast
+      [color]="toastcolor"
+      [isOpen]="isToastOpen"
+      [message]="toastmessage"
+      [duration]="3000"
+      (didDismiss)="setOpen(false)"
+    ></ion-toast>
   </form>
 
-  <ion-text>¿Ya tienes cuenta?</ion-text><br>
-  <ion-button [routerLink]="['/login']">Login</ion-button>
-
-  <ion-toast
-    [color]="toastcolor"
-    [isOpen]="isToastOpen"
-    [message]="toastmessage"
-    [duration]="3000"
-    (didDismiss)="setOpen(false)"
-  ></ion-toast>
+  
 
 </ion-content>

@@ -1,27 +1,27 @@
+.class-center {
+    position: relative;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  }
+  
+  form {
+    position: absolute;
+    top: 50%; /* Coloca el formulario en el centro vertical */
+    left: 50%; /* Coloca el formulario en el centro horizontal */
+    transform: translate(-50%, -50%); /* Ajusta el formulario para que quede perfectamente centrado */
+    width: 50%; /* Ancho del formulario (50% del ancho de la pantalla) */
+    min-width: 350px; /* Ancho mínimo del formulario para pantallas pequeñas */
+    margin: 0 auto; /* Esto asegura que se centre si el formulario no tiene un `position: absolute` */
+  }
+  
+  ion-item {
+    margin-top: 10px !important; /* Espaciado superior en los items */
+  }
+  
+  ion-button {
+    margin-top: 10px !important; /* Espaciado superior en el botón */
+    margin-bottom: 10px !important; /* Espaciado inferior en el botón */
+  }
 
-ion-grid {
-    height: 100%;
-    justify-content: center;
-}
-
-.class-center{
-    
-    display: flex; 
-    justify-content: center;
-}
-
-form{
-    
-    margin-top: 100px!important;
-    width: 60%; 
-    margin: auto; 
-    min-width: 350px;
-    ion-item{
-        margin-top: 10px!important;
-    }
-    ion-button{
-        margin-top: 10px!important;
-        margin-bottom: 10px!important;
-    }
-    
-}
+  ion-title{
+    text-align: center;
+  }
