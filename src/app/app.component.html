@@ -5,9 +5,9 @@
         <ion-list id="inbox-list" >
           <ion-list-header>Inbox</ion-list-header>
           <ion-note>hi&#64;ionicframework.com</ion-note>
-
+          <!--[routerLink]="[p.url]"-->
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root"  (click)="navigate(p.url)" lines="none" detail="false" routerLinkActive="selected" button>
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
@@ -25,5 +25,9 @@
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
+    
   </ion-split-pane>
+
+  
+
 </ion-app>

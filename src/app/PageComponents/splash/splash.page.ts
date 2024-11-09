@@ -19,7 +19,6 @@ export class SplashPage implements OnInit {
   id:string='loading.json'
   constructor(private router:Router,private activateroute:ActivatedRoute) {
     this.activateroute.paramMap.subscribe(params=>{
-      console.log(params.get('id'))
       this.id=params.get('id')??"loading.json"
       this.updateAnimationPath();
     })
@@ -37,7 +36,6 @@ export class SplashPage implements OnInit {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
   }
 
   
@@ -46,7 +44,6 @@ export class SplashPage implements OnInit {
     
     timer(2000).subscribe({
       next:(value)=>{
-        console.log("valor infinito")
         this.router.navigate(['/home'])
       },
       error:(err)=>{

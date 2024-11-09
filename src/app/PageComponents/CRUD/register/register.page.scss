@@ -13,3 +13,14 @@ form {
   ion-title{
     text-align: center;
   }
+
+  ion-item {
+    margin-top: 10px !important; /* Espaciado superior en los items */
+  }
+  
+  ion-button {
+    margin-top: 10px !important; /* Espaciado superior en el botón */
+    margin-bottom: 10px !important; /* Espaciado inferior en el botón */
+  }
+
+  

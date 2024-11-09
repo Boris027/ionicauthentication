@@ -41,8 +41,6 @@ export class StrapiAuthenticationService extends BaseAuthenticationService<User>
     }
 
     override login(user:User): Observable<string> {
-        console.log(LOCALSTORAGE_ITEM_NAME)
-        console.log(this.APIURL)
         const body={identifier:user.email,password:user.password}
         return this.httpclient.post(this.APIURL+`/auth/local`,body).pipe(map((c:any)=>{return c.jwt}))
     }
