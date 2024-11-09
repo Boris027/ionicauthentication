@@ -13,7 +13,7 @@
     
   </ion-title>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content class="class-center">
   <form [formGroup]="formGroup" (ngSubmit)="submitForm(formGroup)">
     
 
@@ -37,18 +37,20 @@
 
     <!-- Botón de Envío -->
     <ion-button [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit" >Iniciar Sesión</ion-button>
+
+    <ion-text>¿No tienes cuenta?</ion-text><br>
+    <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+
+
+    <ion-toast
+      [color]="toastcolor"
+      [isOpen]="isToastOpen"
+      [message]="toastmessage"
+      [duration]="3000"
+      (didDismiss)="setOpen(false)"
+    ></ion-toast>
   </form>
 
-  <ion-text>¿No tienes cuenta?</ion-text><br>
-  <ion-button [routerLink]="['/register']">Registrarse</ion-button>
-
-
-  <ion-toast
-    [color]="toastcolor"
-    [isOpen]="isToastOpen"
-    [message]="toastmessage"
-    [duration]="3000"
-    (didDismiss)="setOpen(false)"
-  ></ion-toast>
+  
 
 </ion-content>

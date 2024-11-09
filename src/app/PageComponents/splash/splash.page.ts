@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
@@ -16,19 +16,37 @@ import { timer } from 'rxjs';
 })
 export class SplashPage implements OnInit {
   showSidebar = false;
+  id:string='loading.json'
+  constructor(private router:Router,private activateroute:ActivatedRoute) {
+    this.activateroute.paramMap.subscribe(params=>{
+      console.log(params.get('id'))
+      this.id=params.get('id')??"loading.json"
+      this.updateAnimationPath();
+    })
+  }
 
-  constructor(private router:Router) { }
   options: AnimationOptions = {
-    path: '/assets/loading.json',
+    path: ('/assets/'+this.id),
+    
   };
+  
+  updateAnimationPath() {
+    this.options = {
+      path: '/assets/' + this.id, 
+    };
+  }
 
   animationCreated(animationItem: AnimationItem): void {
     console.log(animationItem);
   }
 
+  
+
   ngOnInit() {
+    
     timer(2000).subscribe({
       next:(value)=>{
+        console.log("valor infinito")
         this.router.navigate(['/home'])
       },
       error:(err)=>{

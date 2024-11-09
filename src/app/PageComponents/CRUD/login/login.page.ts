@@ -74,7 +74,7 @@ export class LoginPage implements OnInit {
           this.setOpen(true)
           timer(500).subscribe({
             next:(value)=>{
-                this.router.navigate(["/splash"])
+                this.router.navigate(["/splash","login.json"])
             },
           })
       },

@@ -1,0 +1,27 @@
+
+ion-grid {
+    height: 100%;
+    justify-content: center;
+}
+
+.class-center{
+    
+    display: flex; 
+    justify-content: center;
+}
+
+form{
+    
+    margin-top: 100px!important;
+    width: 60%; 
+    margin: auto; 
+    min-width: 350px;
+    ion-item{
+        margin-top: 10px!important;
+    }
+    ion-button{
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+    }
+    
+}

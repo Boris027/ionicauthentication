@@ -5,7 +5,7 @@ import { AuthGuard } from './Core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'splash',
+    redirectTo: 'splash/loading.json',
     pathMatch: 'full'
   },
   
@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./PageComponents/General/groups/groups.module').then( m => m.GroupsPageModule)
   },
   {
-    path: 'splash',
+    path: 'splash/:id',
     loadChildren: () => import('./PageComponents/splash/splash.module').then( m => m.SplashPageModule)
   },
   {
